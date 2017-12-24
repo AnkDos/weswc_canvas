@@ -80,13 +80,13 @@ function myCanvas(by,pb,ca,pc,cont,pco) {
    var p2=pc.split(',');
    var p3=pco.split(',');
     ctx.drawImage(img,10,10);
-     //ctx.fontSize = "30px";
+     ctx.font = "25px Caviar Dreams";
      //ctx.strokeText("By "+by,400,900)  ;
      wrapText(ctx,by,p1[0],p1[1],p1[2],p1[3],"Caviar Dreams");
-     //ctx.fontSize = "30px";
+     ctx.font = "25px Aerial";
      wrapText(ctx,ca,p2[0],p2[1],p2[2],p2[3],"Aerial");
      //ctx.strokeText("["+ca+"]",1000,75);
-    //ctx.fontSize = "30px";
+    ctx.font = "25px Caviar Dreams";
      // var texts="How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
       wrapText(ctx,cont,p3[0],p3[1],p3[2],p3[3],"Caviar Dreams");
     //  ctx.strokeText("jiji idifjdi i isjijsjkj ajjkjdkljk jsk jkl kklhjdhj hj
