@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Image to use:</p>
+<img id="scream" src="img_the_scream.jpg" alt="The Scream" >
+
+<p>Canvas to fill:</p>
+<canvas id="myCanvas" width="1295" height="1050" >
+Your browser does not support the HTML5 canvas tag.</canvas>
+    
+<p>
+BY :<input type="text" id="t1">
+</p>
+<P>
+   type like this in the text box : 'x-axis,y-axis,width,size' without ''  
+   Default x,y=400,900   <input type="text" id="p1">
+    </P>
+<p>
+Content : <textarea id="t2"></textarea>
+</p>
+<P>
+        type like this in the text box : 'x-axis,y-axis,width,size'  Default x,y=400,300     <input type="text" id="p2">
+        </P>
+    
+<p>
+Category : <input type="text" id="t3">    
+<P>
+        type like this in the text box : 'x-axis,y-axis,width,size' Default x,y=1000,75    <input type="text" id="p3">
+        </P>
+    
+</p>
+
+<p><button onclick="myCanvas(document.getElementById('t1').value,document.getElementById('p1').value,document.getElementById('t3').value,document.getElementById('p3').value,document.getElementById('t2').value,document.getElementById('p2').value)">Try it</button></p>
+
+</p>
+<p> 
+
+        <button type="button" onclick="saveImage()">save image</button>
+        <script type="text/javascript">
+            function saveImage() {
+                
+                var canvas = document.getElementById("myCanvas");
+             document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            }
+        </script>
+
+    </p>
+<script>
+
+function wrapText(context, text, x, y, maxWidth, fontSize, fontFace) {
+    var words = text.split(' ');
+    var line = '';
+    var lineHeight = fontSize+2;
+
+    context.font = fontSize + " " + fontFace;
+
+    for (var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth) {
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        } else {
+            line = testLine;
+        }
+    }
+    context.fillText(line, x, y);
+}
+
+</script>
+<script>
+function myCanvas(by,pb,ca,pc,cont,pco) {
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("scream");
+   var p1=pb.split(',');
+   var p2=pc.split(',');
+   var p3=pco.split(',');
+    ctx.drawImage(img,10,10);
+     ctx.fontSize = "18px";
+     //ctx.strokeText("By "+by,400,900)  ;
+     wrapText(ctx,by,p1[0],p1[1],p1[2],p1[3],"Caviar Dreams");
+     ctx.fontSize = "18px";
+     wrapText(ctx,ca,p2[0],p2[1],p2[2],p2[3],"Aerial");
+     //ctx.strokeText("["+ca+"]",1000,75);
+    ctx.fontSize = "18px";
+     // var texts="How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+      wrapText(ctx,cont,p3[0],p3[1],p3[2],p3[3],"Caviar Dreams");
+    //  ctx.strokeText("jiji idifjdi i isjijsjkj ajjkjdkljk jsk jkl kklhjdhj hj
+    //  ahsj shklhdklh dklhdklshirhl shdhsklhkldhk shklhrhsjhh h ",400,300) ;
+
+  
+        
+    
+}
+
+
+</script>
+</body>
+</html>
